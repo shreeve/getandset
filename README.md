@@ -28,6 +28,13 @@ let data = {
     "WW1": 1914,
     "WW2": 1939,
     "WW3": "??"
+  },
+  i: {
+    j: {
+      k: {
+        l: "Hello"
+      }
+    }
   }
 };
 ```
@@ -49,4 +56,34 @@ get('d.g[-3]') // take a walk
 get('h') // { WW1: 1914, WW2: 1939, WW3: '??' }
 get('h["WW1"]') // 1914
 get("h['WW1']") // 1914
+get('i.j.k') // { l: 'Hello' }
+get('i.j.k.l') // Hello
+get('i/j/k') // { l: 'Hello' }
+get('i/j/k/l') // Hello
+get('i/j/z') // undefined
+get('i/z/k/l') // undefined
+```
+
+### CoffeeScript
+
+Of course, all this becomes much nicer in CoffeeScript.
+
+```coffee
+data =
+  a: 1
+  b: [2, 3, 4]
+  c: "Okay"
+  d:
+    e: new Date()
+    f: (val) -> "You said: #{val}"
+    g: [
+        "take a walk"
+        "go to movie"
+        "eat a sandwich"
+  ]
+  h:
+    "WW1": 1914
+    "WW2": 1939
+    "WW3": "??"
+  i: j: k: l: "Hello"
 ```
