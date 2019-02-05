@@ -4,6 +4,7 @@
   "description": "Flexible way to get and set items in a multilevel object.",
   "main": "index.js",
   "scripts": {
+    "build": "coffee -b -c index.coffee"
   },
   "keywords": [],
   "author": "Steve Shreeve <steve.shreeve@gmail.com>",
