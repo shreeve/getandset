@@ -2,7 +2,7 @@
 
 ## Summary
 
-The `getandset` module provides a simple way to safely and conveniently `get` and `set` nested data.
+`getandset` provides a simple way to safely and conveniently `get` and `set` nested data.
 
 ### Install from `github`
 
