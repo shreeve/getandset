@@ -4,6 +4,8 @@
 
 `getandset` provides a simple way to safely and conveniently `get` and `set` nested data.
 
+> NOTE: `get` has been added, but still working on `set`
+
 ### Install from `github`
 
 ```shell
