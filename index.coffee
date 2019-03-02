@@ -2,14 +2,14 @@ regx =  /([.\/][^.\/\[\<\s]+|\[[-+]?\d+\]|\[(?:"[^"]+"|'[^']+')\])/
 
 module.exports =
 
-  get: (data, path) ->
+  get: (data, path, valu) ->
     list = walk path
     for item in list when data?
       if data.hasOwnProperty item
         data = data[item]
       else if !isNaN(item) and Array.isArray(data) and +item < 0
         data = data[data.length + item]
-      else return
+      else return valu
     data
 
 walk = (path) ->

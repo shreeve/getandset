@@ -4,7 +4,7 @@ var regx, walk;
 regx = /([.\/][^.\/\[\<\s]+|\[[-+]?\d+\]|\[(?:"[^"]+"|'[^']+')\])/;
 
 module.exports = {
-  get: function(data, path) {
+  get: function(data, path, valu) {
     var i, item, len, list;
     list = walk(path);
     for (i = 0, len = list.length; i < len; i++) {
@@ -15,7 +15,7 @@ module.exports = {
         } else if (!isNaN(item) && Array.isArray(data) && +item < 0) {
           data = data[data.length + item];
         } else {
-          return;
+          return valu;
         }
       }
     }
