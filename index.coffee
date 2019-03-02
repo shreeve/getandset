@@ -12,6 +12,22 @@ module.exports =
       else return valu
     data
 
+  set: (data, path, valu) ->
+    list = walk path
+    last = list.length - 1
+    for item, n in list
+      done = n is last
+      next = if done then valu else { }
+      if data.hasOwnProperty item
+        data[item] = next if done or typeof data[item] isnt 'object'
+      else if !isNaN(item) and Array.isArray(data) and +item < 0
+        item = data.length + item
+        data[item] = next if done or typeof data[item] isnt 'object'
+      else
+        data[item] = next
+      data = data[item]
+    data
+
 walk = (path) ->
   list = ('.' + path).split regx; list.shift()
   for part in list by 2

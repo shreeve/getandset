@@ -20,6 +20,30 @@ module.exports = {
       }
     }
     return data;
+  },
+  set: function(data, path, valu) {
+    var done, i, item, last, len, list, n, next;
+    list = walk(path);
+    last = list.length - 1;
+    for (n = i = 0, len = list.length; i < len; n = ++i) {
+      item = list[n];
+      done = n === last;
+      next = done ? valu : {};
+      if (data.hasOwnProperty(item)) {
+        if (done || typeof data[item] !== 'object') {
+          data[item] = next;
+        }
+      } else if (!isNaN(item) && Array.isArray(data) && +item < 0) {
+        item = data.length + item;
+        if (done || typeof data[item] !== 'object') {
+          data[item] = next;
+        }
+      } else {
+        data[item] = next;
+      }
+      data = data[item];
+    }
+    return data;
   }
 };
 
