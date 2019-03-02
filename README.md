@@ -44,26 +44,26 @@ let data = {
 ### Example 'get'
 
 ```js
-get('a') // 1
-get('b') // [ 2, 3, 4 ]
-get('b[-3]') // 2
-get('c')[3] // 'y'
-get('d') // gives back an obj with { e, f, and g keys }
-get('d.e') // 2019-02-05T19:33:46.462Z
-get('d.f') // [Function: f]
-get('d.f')('cool') // 'You said: cool'
-get('d.g') // [ 'take a walk', 'go to movie', 'eat a sandwich' ]
-get('d.g[]') // [ 'take a walk', 'go to movie', 'eat a sandwich' ]
-get('d.g[-3]') // take a walk
-get('h') // { WW1: 1914, WW2: 1939, WW3: '??' }
-get('h["WW1"]') // 1914
-get("h['WW1']") // 1914
-get('i.j.k') // { l: 'Hello' }
-get('i.j.k.l') // Hello
-get('i/j/k') // { l: 'Hello' }
-get('i/j/k/l') // Hello
-get('i/j/z') // undefined
-get('i/z/k/l') // undefined
+get(data, 'a') // 1
+get(data, 'b') // [ 2, 3, 4 ]
+get(data, 'b[-3]') // 2
+get(data, 'c')[3] // 'y'
+get(data, 'd') // gives back an obj with { e, f, and g keys }
+get(data, 'd.e') // 2019-02-05T19:33:46.462Z
+get(data, 'd.f') // [Function: f]
+get(data, 'd.f')('cool') // 'You said: cool'
+get(data, 'd.g') // [ 'take a walk', 'go to movie', 'eat a sandwich' ]
+get(data, 'd.g[]') // [ 'take a walk', 'go to movie', 'eat a sandwich' ]
+get(data, 'd.g[-3]') // take a walk
+get(data, 'h') // { WW1: 1914, WW2: 1939, WW3: '??' }
+get(data, 'h["WW1"]') // 1914
+get(data, "h['WW1']") // 1914
+get(data, 'i.j.k') // { l: 'Hello' }
+get(data, 'i.j.k.l') // Hello
+get(data, 'i/j/k') // { l: 'Hello' }
+get(data, 'i/j/k/l') // Hello
+get(data, 'i/j/z') // undefined
+get(data, 'i/z/k/l') // undefined
 ```
 
 ### CoffeeScript
