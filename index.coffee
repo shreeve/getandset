@@ -4,29 +4,26 @@ module.exports =
 
   get: (data, path, valu) ->
     list = walk path
-    for item in list when data?
-      if data.hasOwnProperty item
-        data = data[item]
-      else if !isNaN(item) and Array.isArray(data) and +item < 0
-        data = data[data.length + item]
-      else return valu
-    data
+    for prop in list
+      return valu unless data? and typeof data is 'object'
+      prop = data.length + prop if num(prop) and Array.isArray(data) and +prop < 0
+      data = data[prop]
+    if data? then data else valu
 
   set: (data, path, valu) ->
     list = walk path
     last = list.length - 1
-    for item, n in list
-      done = n is last
-      next = if done then valu else { }
-      if data.hasOwnProperty item
-        data[item] = next if done or typeof data[item] isnt 'object'
-      else if !isNaN(item) and Array.isArray(data) and +item < 0
-        item = data.length + item
-        data[item] = next if done or typeof data[item] isnt 'object'
+    for prop, slot in list
+      if slot is last
+        next = valu
       else
-        data[item] = next
-      data = data[item]
+        prop = data.length + prop if num(prop) and Array.isArray(data) and +prop < 0
+        next = data[prop]; next ?= undefined
+        next = (if num(list[slot+1]) then [] else {}) if typeof next isnt 'object'
+      data = data[prop] = next
     data
+
+num = (val) -> /^-?(\d+)$/.test val
 
 walk = (path) ->
   list = ('.' + path).split regx; list.shift()
